@@ -1,0 +1,142 @@
+﻿<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+<meta name="wap-font-scale" content="no"/>
+<title>loading-row-scroll</title>
+<link rel="stylesheet" type="text/css" href="css/page.css"/>
+<style type="text/css" class="module-css">
+/*loading-row-scroll*/
+.section-row{padding:10px;}
+.section-row .row-item{border-bottom:1px solid #ddd;padding:8px 0 8px 90px;overflow:hidden;}
+.section-row .row-item .info{position: relative;height:80px;font-size:12px;}
+.section-row .row-item .thumb{float: left;width:80px;margin-left:-90px;}
+.section-row .row-item .img{width:100%;}
+.section-row .row-item .meta{margin-right:75px;}
+.section-row .row-item .name{padding-bottom:5px;font-size:16px;}
+.section-row .row-item .name,
+.section-row .row-item .intro{width:100%;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
+.section-row .row-item .price{color:#f54d4f;}
+.section-row .row-item .price-original{margin-left:5px;font-size:12px;color:#bbb;}
+.section-row .row-item .action{position: absolute;right:0;top:50%;-webkit-transform:translate3d(0 , -50% , 0);transform:translate3d(0 , -50% , 0);}
+.section-row .row-item .btn-action{display:block;border:1px solid #f54d4f;border-radius:2px;padding:0 10px;line-height:24px;color:#f54d4f;background: #fff;}
+
+
+
+.loading{text-align: center;background: #fff;}
+.loading .loading-animation{position:relative;width:40px;display:inline-block;vertical-align:middle;margin-right:3px;}
+.loading-circle{position:relative;margin:0 auto;width:12px;height:12px;}
+.loading-circle .circle{position:absolute;top:0;width:12px;height:12px;content:'';border-radius:50%;}
+.loading-circle .circle01{background:#dd8000;left:15px;
+-webkit-animation:circleRotote03 1.5s linear infinite;
+animation:circleRotote03 1.5s linear infinite;}
+.loading-circle .circle02{left:0;z-index:10;background:#000;}
+
+@-webkit-keyframes circleRotote03{
+    0%{ left:15px;z-index:11;}
+    49%{ z-index:11;}
+    50%{ left:-15px;z-index:5;}
+    100%{ z-index:5;}
+}
+@keyframes circleRotote03{
+    0%{ left:15px;z-index:11;}
+    49%{ z-index:11;}
+    50%{ left:-15px;z-index:5;}
+    100%{ z-index:5;}
+}
+
+.loading-animation .arrow{font-weight:bolder;font-size:22px;display:none;
+-webkit-transition:0.5s all;transition:0.5s all;
+-webkit-transform:rotate(0deg);transform:rotate(0deg);
+}
+.loading .loading-animation .arrow,
+.loading .loading-text .text02,
+.loading .loading-text .text03{display:none;}
+
+.loading-drag-move .loading-animation .loading-circle,
+.loading-drag-move .loading-text .text01,
+.loading-drag-move .loading-text .text03{display:none;}
+
+.loading-drag-move .loading-animation .arrow{
+-webkit-transform:rotate(0deg);transform:rotate(0deg);
+}
+.loading-drag-move .loading-animation .arrow,
+.loading-drag-move .loading-text .text02{display:inline-block;}
+
+.loading-drag-trigger .loading-animation .loading-circle,
+.loading-drag-trigger .loading-text .text01,
+.loading-drag-trigger .loading-text .text02{display:none;}
+
+.loading-drag-trigger .loading-animation .arrow{
+-webkit-transform:rotate(180deg);transform:rotate(180deg);
+}
+.loading-drag-trigger .loading-animation .arrow,
+.loading-drag-trigger .loading-text .text03{display:inline-block;}
+
+
+</style>
+</head>
+
+<body>
+
+<div class="module-html"> 
+<!--loading-row-scroll-->
+<div class="loading-data-mod">
+    <div class="section-row">
+        <ul class="row-list">
+            <!-- <li class="row-item">
+                <div class="info">
+                    <div class="thumb">
+                        <a href="#"><img src="images/sample.jpg" alt="" class="img"></a>
+                    </div>
+                    <div class="meta">
+                        <p class="name">快钱充值卡</p>
+                        <p class="intro">一张用于快钱快捷支付的充值卡，你可以用于在各大网站使用</p>
+                        <p class="price">
+                            <span class="price-now">￥500.00</span>
+                            <del class="price-original">￥550.00</del>
+                        </p>  
+                    </div>
+                    <div class="action">
+                        <a href="javascript:;" class="btn btn-action">操作按钮</a>
+                    </div>
+                </div>
+            </li> -->
+        </ul>
+        <div class="loading">
+            <div class="loading-animation">
+                <div class="loading-circle">
+                    <b class="circle circle01"></b>
+                    <b class="circle circle02"></b>
+                </div>
+                <b class="arrow">↓</b>
+            </div>
+            <span class="loading-text">
+                <span class="text01">加载中...</span>
+                <span class="text02">下拉刷新</span>
+                <span class="text03">释放刷新</span>
+            </span>
+        </div>
+    </div>
+</div>
+
+</div>
+
+
+<script src="js/zepto-1.1.6.min.js"></script>
+<script src="js/hammer.min.js"></script>
+<script src="js/scroll-pull-loading.js"></script>
+<script>
+
+$(".loading-data-mod").scrollPullLoading({
+    dataUrl : "js/data.js"
+});
+
+
+</script>
+</body>
+</html>
+
+
