@@ -27,7 +27,7 @@ $(".loading-data-mod").scrollPullLoading({
 });
 ```
 
-滚动演示：[点击查看](http://joy-yi0905.github.io/scroll-pull-loading/loading-row-scroll.html)
+滚动加载数据演示：[点击查看](http://joy-yi0905.github.io/scroll-pull-loading/loading-row-scroll.html)
 
 - 你也能下拉加载数据，当然，只需要设置加载方向即可：
 
@@ -38,4 +38,4 @@ $(".loading-data-mod").scrollPullLoading({
 });
 ```
 
-滚动演示：[点击查看](http://joy-yi0905.github.io/scroll-pull-loading/loading-row-pull.html)
+下拉加载数据演示：[点击查看](http://joy-yi0905.github.io/scroll-pull-loading/loading-row-pull.html)
