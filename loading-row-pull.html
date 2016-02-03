@@ -92,8 +92,8 @@ animation:circleRotote03 1.5s linear infinite;}
                         <a href="#"><img src="images/sample.jpg" alt="" class="img"></a>
                     </div>
                     <div class="meta">
-                        <p class="name">快钱充值卡</p>
-                        <p class="intro">一张用于快钱快捷支付的充值卡，你可以用于在各大网站使用</p>
+                        <p class="name">标题</p>
+                        <p class="intro">内容描述，内容描述，内容描述</p>
                         <p class="price">
                             <span class="price-now">￥500.00</span>
                             <del class="price-original">￥550.00</del>
@@ -132,7 +132,29 @@ animation:circleRotote03 1.5s linear infinite;}
 
 $(".loading-data-mod").scrollPullLoading({
     loadDirection : "top",
-    dataUrl : "js/data.js"
+    dataUrl : "js/data.js",
+    insert : function(data){
+        var tempEle = $("<li class='row-item'>"),
+                str = "";
+            str += "<div class='info'>";
+            str += "<div class='thumb'>";
+            str += "<a href='#'><img src='"+ data.pic +"' alt='' class='img'></a>";
+            str += "</div>";
+            str += "<div class='meta'>";
+            str += "<p class='name'>"+ data.name +"</p>";
+            str += "<p class='intro'>"+ data.desc +"</p>";
+            str += "<p class='price'>";
+            str += "<span class='price-now'>￥"+ (data.price * 0.8).toFixed(2) +"</span>";
+            str += "<del class='price-original'>￥"+ data.price +"</del>";
+            str += "</p>";
+            str += "</div>";
+            str += "<div class='action'>";
+            str += "<a href='"+ data.href +"' class='btn btn-action'>操作按钮</a>";
+            str += "</div>";
+            str += "</div>";
+            tempEle.html( str );
+        return tempEle;
+    }
 });
 
 
