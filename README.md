@@ -23,7 +23,29 @@ scroll-pull-loading 是基于zepto.js和hammer.js的一款加载数据的插件�
 
 ```javascript
 $(".loading-data-mod").scrollPullLoading({
-    dataUrl : "js/data.js"
+    dataUrl : "js/data.js",
+    insert : function(data){
+        var tempEle = $("<li class='row-item'>"),
+                str = "";
+            str += "<div class='info'>";
+            str += "<div class='thumb'>";
+            str += "<a href='#'><img src='"+ data.pic +"' alt='' class='img'></a>";
+            str += "</div>";
+            str += "<div class='meta'>";
+            str += "<p class='name'>"+ data.name +"</p>";
+            str += "<p class='intro'>"+ data.desc +"</p>";
+            str += "<p class='price'>";
+            str += "<span class='price-now'>￥"+ (data.price * 0.8).toFixed(2) +"</span>";
+            str += "<del class='price-original'>￥"+ data.price +"</del>";
+            str += "</p>";
+            str += "</div>";
+            str += "<div class='action'>";
+            str += "<a href='"+ data.href +"' class='btn btn-action'>操作按钮</a>";
+            str += "</div>";
+            str += "</div>";
+            tempEle.html( str );
+        return tempEle;
+    }
 });
 ```
 
@@ -34,7 +56,29 @@ $(".loading-data-mod").scrollPullLoading({
 ```javascript
 $(".loading-data-mod").scrollPullLoading({
     loadDirection : "top",
-    dataUrl : "js/data.js"
+    dataUrl : "js/data.js",
+    insert : function(data){
+        var tempEle = $("<li class='row-item'>"),
+                str = "";
+            str += "<div class='info'>";
+            str += "<div class='thumb'>";
+            str += "<a href='#'><img src='"+ data.pic +"' alt='' class='img'></a>";
+            str += "</div>";
+            str += "<div class='meta'>";
+            str += "<p class='name'>"+ data.name +"</p>";
+            str += "<p class='intro'>"+ data.desc +"</p>";
+            str += "<p class='price'>";
+            str += "<span class='price-now'>￥"+ (data.price * 0.8).toFixed(2) +"</span>";
+            str += "<del class='price-original'>￥"+ data.price +"</del>";
+            str += "</p>";
+            str += "</div>";
+            str += "<div class='action'>";
+            str += "<a href='"+ data.href +"' class='btn btn-action'>操作按钮</a>";
+            str += "</div>";
+            str += "</div>";
+            tempEle.html( str );
+        return tempEle;
+    }
 });
 ```
 
