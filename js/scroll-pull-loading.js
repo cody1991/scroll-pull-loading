@@ -2,6 +2,7 @@
 // scrollPullLoading
 $.fn.scrollPullLoading = function(options){
     var defaults = { 
+<<<<<<< HEAD
             sectionRow     : ".section-row",
             rowList        : ".row-list",
             loading        : ".loading",
@@ -13,6 +14,18 @@ $.fn.scrollPullLoading = function(options){
             loadDirection  : "bottom",
             dataUrl        : "js/data.js",
             insert         : function(){}
+=======
+            sectionRow    : ".section-row",
+            rowList       : ".row-list",
+            loading       : ".loading",
+            screenH       : $(window).height(),
+            showNum       : 10,
+            loadNum       : 10,
+            tempNum       : 0,
+            isLoad        : true,
+            loadDirection : "bottom",
+            dataUrl       : "js/data.js"
+>>>>>>> gh-pages
         }
     var options = $.extend(defaults, options); 
     this.each(function(){
@@ -27,7 +40,10 @@ $.fn.scrollPullLoading = function(options){
             isLoad = options.isLoad,
             loadDirection = options.loadDirection,
             dataUrl = options.dataUrl,
+<<<<<<< HEAD
             insert = options.insert,
+=======
+>>>>>>> gh-pages
             sectionRowTop = sectionRow.offset().top,
             loadingH = loading.height();
 
@@ -173,14 +189,39 @@ $.fn.scrollPullLoading = function(options){
         }
 
         function appendHtml(data){
+<<<<<<< HEAD
 
             var tempEle = insert(data);
 
+=======
+            var tempEle = $("<li class='row-item'>"),
+                str = "";
+            str += "<div class='info'>";
+            str += "<div class='thumb'>";
+            str += "<a href='#'><img src='"+ data.pic +"' alt='' class='img'></a>";
+            str += "</div>";
+            str += "<div class='meta'>";
+            str += "<p class='name'>"+ data.name +"</p>";
+            str += "<p class='intro'>"+ data.desc +"</p>";
+            str += "<p class='price'>";
+            str += "<span class='price-now'>￥"+ (data.price * 0.8).toFixed(2) +"</span>";
+            str += "<del class='price-original'>￥"+ data.price +"</del>";
+            str += "</p>";
+            str += "</div>";
+            str += "<div class='action'>";
+            str += "<a href='"+ data.href +"' class='btn btn-action'>操作按钮</a>";
+            str += "</div>";
+            str += "</div>";
+            tempEle.html( str );
+>>>>>>> gh-pages
             if(loadDirection == "top"){
                 tempEle.prependTo( rowList );
                 return;
             }
+<<<<<<< HEAD
             
+=======
+>>>>>>> gh-pages
             rowList.append( tempEle );
         }
 
