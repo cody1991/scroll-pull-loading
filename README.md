@@ -1,6 +1,5 @@
 # scroll-pull-loading
 一个滚动或下拉页面进行数据加载的插件
-<<<<<<< HEAD
 
 ### 介绍
 
@@ -84,5 +83,4 @@ $(".loading-data-mod").scrollPullLoading({
 ```
 
 下拉加载数据演示：[点击查看](http://joy-yi0905.github.io/scroll-pull-loading/loading-row-pull.html)
-=======
->>>>>>> gh-pages
+
