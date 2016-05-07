@@ -1,6 +1,6 @@
-
+﻿
 // scrollPullLoading
-$.fn.scrollPullLoading = function(options){
+$.fn.scrollPullLoading = function(options) {
     var defaults = { 
             sectionRow     : ".section-row",
             rowList        : ".row-list",
@@ -13,7 +13,7 @@ $.fn.scrollPullLoading = function(options){
             loadDirection  : "bottom",
             dataUrl        : "js/data.js",
             insert         : function(){}
-        }
+        };
     var options = $.extend(defaults, options); 
     this.each(function(){
         var t = $(this),
@@ -34,18 +34,18 @@ $.fn.scrollPullLoading = function(options){
         // 滚动加载
         (loadDirection == "bottom") &&
         (t.css({"position" : "relative" , "height" : "auto" , "overflow" : "auto"})) &&
-        $(window).bind( "scroll" , function(){
+        $(window).bind( "scroll" , function() {
             var scrollTop = $(window).scrollTop(),
                 sectionRowH = sectionRow.height();
 
-            if(scrollTop > (sectionRowTop + sectionRowH - screenH - loadingH*4) && isLoad){  // loading data
+            if (scrollTop > (sectionRowTop + sectionRowH - screenH - loadingH*4) && isLoad) {  // loading data
                 loading.show();
                 insertData();
             }
         })
 
         // 下拉加载
-        if( loadDirection == "top" ){
+        if (loadDirection == "top") {
             var hammerT = new Hammer(sectionRow.get(0));
 
             t.css({"position" : "relative" , "height" : screenH , "overflow" : "hidden"});
@@ -72,13 +72,13 @@ $.fn.scrollPullLoading = function(options){
                 topPullLoad = true;
 
             var hammerAction = {
-                hStart : function(e){
+                hStart: function(e) {
                    tempOffset = moveOffset;
                    topPullLoad =  moveOffset >= 0 ? true : false;  // 是否从顶部往下拉
                    // console.log( moveOffset );
                 },
-                hMove : function(e){
-                    if( topPullLoad ){   // topPullLoad为真，直接计算 e.deltaY
+                hMove: function(e) {
+                    if (topPullLoad) {   // topPullLoad为真，直接计算 e.deltaY
                         tempOffset = e.deltaY;
                         if(tempOffset > 100 ){
                             loading.show().removeClass("loading-drag-move").addClass("loading-drag-trigger");
@@ -86,8 +86,7 @@ $.fn.scrollPullLoading = function(options){
                         else if( tempOffset > 0 && tempOffset < 100 ){
                             loading.show().removeClass("loading-drag-trigger").addClass("loading-drag-move");
                         }
-                    }
-                    else{  // 否则，计算 列表之前移动的高度+e.deltaY
+                    } else {  // 否则，计算 列表之前移动的高度+e.deltaY
                         tempOffset = moveOffset + e.deltaY;
                         if(tempOffset > 100 ){
                             loading.show().removeClass("loading-drag-move").addClass("loading-drag-trigger");
@@ -101,32 +100,29 @@ $.fn.scrollPullLoading = function(options){
                     // document.title = e.deltaY + ";" + tempOffset;
                     // console.log(e.deltaY + ";" + tempOffset + ";" + moveOffset);
                 },
-                hEnd : function(e){
+                hEnd: function(e) {
                     var self = this;
                     moveOffset += e.deltaY;
-                    if( loading.hasClass("loading-drag-trigger") ){ // loading data
+                    if (loading.hasClass("loading-drag-trigger")){ // loading data
                         loading.removeClass("loading-drag-trigger");
                         moveOffset = loadingH;
                         insertData(function(){
                             self.setAnimationAttr( 0.5 , 0);
                         });
-                    }
-                    else if( loading.hasClass("loading-drag-move") ){  // 下拉距离不满足加载数据条件
+                    } else if (loading.hasClass("loading-drag-move")) {  // 下拉距离不满足加载数据条件
                         loading.hide().removeClass("loading-drag-move");
                         moveOffset = 0;
-                    }
-                    else if( moveOffset < 0 && moveOffset <= screenH - sectionRow.height()){ // 上拉释放时，作如下判断
-                        if( screenH < sectionRow.height() ){ // 若列表高度大于屏幕高，则列表最后一项位于底部
+                    } else if (moveOffset < 0 && moveOffset <= screenH - sectionRow.height()) { // 上拉释放时，作如下判断
+                        if (screenH < sectionRow.height()) { // 若列表高度大于屏幕高，则列表最后一项位于底部
                             moveOffset = screenH - sectionRow.height();
-                        }
-                        else{  // 否则列表第一项在顶部
+                        } else {  // 否则列表第一项在顶部
                             moveOffset = 0 ;
                         }
                     }
-                    this.setAnimationAttr( 0.5 , moveOffset);
+                    this.setAnimationAttr(0.5, moveOffset);
                     e.preventDefault();
                 },
-                setAnimationAttr : function( duration , offset){
+                setAnimationAttr: function(duration, offset) {
                     sectionRow.css({
                         "-webkit-transition" : duration + "s all ease-out",
                         "transition" : duration + "s all ease-out",
@@ -137,26 +133,26 @@ $.fn.scrollPullLoading = function(options){
             }
         }
 
-        function insertData(callback){
+        function insertData(callback) {
             isLoad = false;
-            setTimeout( function(){
+            setTimeout(function() {
                 isLoad = true;
-                loadData( dataUrl );
+                loadData(dataUrl);
                 callback && callback();
-            } , 1000);
+            }, 1000);
         }
 
-        function loadData(url){
+        function loadData(url) {
             $.ajax({
                 type: 'GET',
                 url: url,
                 dataType: 'js',
                 timeout: 2000,
                 context: $('body'),
-                success: function(data){
+                success: function(data) {
                     var data = $.parseJSON(data);
-                    for(var i = tempNum ; i < showNum ; i++){
-                        if( tempNum > data.total - 1 ){ 
+                    for(var i = tempNum; i < showNum; i++){
+                        if (tempNum > data.total - 1) { 
                             loading.html("数据全部加载完成！");
                             return false;
                         }
@@ -166,26 +162,25 @@ $.fn.scrollPullLoading = function(options){
                     // loading.hide();
                     showNum += loadNum;
                 },
-                error: function(xhr, type){
+                error: function(xhr, type) {
                     loading.html("数据加载失败");
                 }
             })
         }
 
-        function appendHtml(data){
+        function appendHtml(data) {
 
             var tempEle = insert(data);
 
-            if(loadDirection == "top"){
-                tempEle.prependTo( rowList );
+            if (loadDirection == "top") {
+                tempEle.prependTo(rowList);
                 return;
             }
             
-            rowList.append( tempEle );
+            rowList.append(tempEle);
         }
 
-        loadData( dataUrl );
-
+        loadData(dataUrl);
 
     })
 }
